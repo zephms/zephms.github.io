@@ -4,6 +4,84 @@
   
     
     <entry>
+      <title>C++ 标准IO</title>
+      <link href="/new/2021/03/01/CPP/cpp%E6%A0%87%E5%87%86io/"/>
+      <url>/new/2021/03/01/CPP/cpp%E6%A0%87%E5%87%86io/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>​     </p><pre><code>    // 标准输入输出:    // cpp兼容了C语言的IO系统,并且独创了面向对象式的系统    // 流的概念:将输入输出看作一个流,不需要考虑具体设备的细节    // 书写格式:    // cin&gt;&gt;内容&gt;&gt;内容&gt;&gt;...;    // cout&lt;&lt;内容&lt;&lt;内容&lt;&lt;...;    // cin: 是istream中的对象, 用来进行标准输入    // cout: 是ostream中的对象, 用来进行标准输出    //    // 设置IO格式:        // 设置IO格式时 cpp预定义的算子:        // dec hex oct : 十进制, 十六进制, 八进制        // ws : 输入跳过开始的空格        // endl : 换行并刷新输出流        // ends : 插入空字符结束字符串        // setw(int w) : 设置输出宽度        // flush : 刷新输出流(从缓存区实际输出)        // setbase : 转换基数设置        // setiosflags(long f) : 设置格式标志        // resetiosflags(long f) : 解除设置格式标志        // setfill(int c) : 填充字符        // setprecision(int p) : 设置填充精度    // 注意    // 1,定义即生效,对整个流都有效果    // 2,setwn对于更长的字符串没有效果,但是如果是较短的字符串会自动在左侧进行补齐 (此命令只起作用1次)    // 3,setiostream(ios::left)和setiosflags(ios::right)用来控制屏幕输出字符左对齐还是右对齐, 默认是右对齐    // 4,serfill设置填充字符,默认是空格    cout&lt;&lt;setfill(&#39;h&#39;)&lt;&lt;setw(7)&lt;&lt;1234&lt;&lt;endl; // 更换默认的填充字符    cout&lt;&lt;setiosflags(ios::left)&lt;&lt;setw(7)&lt;&lt;1234&lt;&lt;endl; // 更换默认的对齐方式    // 变量作用域    // cpp变量除了全局变量,和局部变量,还增加了块变量.块变量的作用域为块作用域    // 花括号标记了一个块,块内的变量对块外是不可见的    // 引用类型    // 引用类型是cpp中新增加的类型,用标识符&amp;来表示,    // 本质是对已经有的变量起的一个别名    // 一般形式: 数据类型 &amp; 引用变量名 = 已定义过的变量名    float x = 5;    float &amp; y1 = x; //针对一个变量,重新定义一个别名    cout&lt;&lt;y1&lt;&lt;endl;    // 引用类型可以用在函数传参上,使用引用进行接受参数    // 例如:    int max_a=3, max_b=8, max_res;    bs_max(max_a, max_b, max_res); // 传入的是int类型,使用引用类型进行接收.这样,函数内部的更改就是对int类型的更改    cout&lt;&lt;max_res&lt;&lt;endl;    // const类型    cout&lt;&lt;&quot;============&quot;&lt;&lt;endl;    // 关键字const可以用来限制 变量,函数参数,函数返回值 的修改    // const修饰一个变量的时候,则限定该变量在定义域范围内为常量,并要求该变量在初始化的时候进行赋值,以后不允许重新赋值或者修改    // c语言时,使用的是宏定义命令常量,即 #define, cpp后就用const定义常量    //      相对于宏定义,const可以用来进行类型检查,且可以像局部变量一样在程序的任意位置进行定义    const int Maxlen = 50;    // todo 此处应该补上关于 限制函数参数,函数返回值 的方法    // 函数    // 相对与c,cpp的函数有很多优点, 主要体现在 1,要求函数原型, 2,允许内联函数, 3,带缺省值的函数, 4,函数重载 ,...    int show1(); // 只要定义了函数原型,系统编译即可通过, 然后再程序后面补上函数体就可以,如果不补的话依旧运行不了,会报错undefined reference    show1();    // 内联函数:    // 在函数声明的时候加上inline字样,此时编译器会将 程序中出现的对该函数的调用 用该函数的函数体 来代替,用于提高运行效率    // 另外,内联函数中不允许使用 循环和开关 ,否则系统将其视为普通函数    // 内联函数的使用会增加代码量,但是会提高性能,也有说,用空间换取时间    // 网上还提到一点:类结构中所在的类说明内部定义的函数是内联函数。 具体等看看类再说啵    // todo 对应上一行    // 带缺省参数的函数:    // 函数的参数可以带有默认值,但是默认值的设置要遵守从右到左的顺序, 即 若某个参数有默认值,则后面必须都有默认值    defaultPara(5, 6); // 使用的时候从左到右填入,不可以跳着填,最后的可以省略    // 缺省参数的优点-- 1方便函数调用语句的书写, 2,方便软件系统的扩张和改进,函数增加功能后,可以通过缺省参数的形式保证原有程序的正确运行    //          3, 方便类的构造函数设计    // 函数的重载:    // 建立多个函数名相同,但是参数列表不相同的函数.    // 函数返回类型可以相同,也可以不同,但是形参必须不同,这种不同可以是参数个数不同也可以是参数类型不同    // 函数的重载又称为函数的多态性.通过改变形参个数或类型使多个函数共用一个函数名    // 名字空间:    // 名字空间可以看作一个比程序模块更大的包,在名字空间中可以封装代码    // 使用方式-- 1, 使用作用域运算符&quot;::&quot;, 2,使用using namespace xxx语句,将所有名字在该空间内可见    first_space::func();    second_space::func();    // cpp内存动态分配:    // cpp新增 new和delete运算符,用于动态存储空间的分配和释放    // 所谓动态存储空间,是指系统提供的一个叫做堆的内存区域,需要用的时候,使用new申请,不使用的时候使用delete释放内存空间给系统    // new一般形式: new 类型名 (初始值) | new 类型名 [数组个数]    // 申请单个变量时,可以有初始值,申请数组的时候不能有初始值,只接受数组个数    // 当动态空间申请不成功的时候new会返回空指针NULL    // delete一般格式: delete 指针 (释放指针的空间) | delete[] 指针 (释放动态数组的空间)    char* string1, s1[]=&quot;Data Structure&quot;;    int length = 14;    string1 = new char[length];    for(int i=0;i&lt;length;i++)&#123;        string1[i] = s1[i];    &#125;    cout&lt;&lt;string1&lt;&lt;endl;    cout&lt;&lt;s1&lt;&lt;endl;return 0;</code></pre><p>}</p><p>int show1(){<br>    cout&lt;&lt;”show1 function”&lt;&lt;endl;<br>}</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>C++ 数据类型</title>
+      <link href="/new/2021/03/01/CPP/cpp%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+      <url>/new/2021/03/01/CPP/cpp%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型:"></a>数据类型:</h3><p>使用编程语言进行编程时，需要用到各种变量来存储各种信息。变量保留的是它所存储的值的内存位置。这意味着，当创建一个变量时，就会在内存中保留一些空间。可能需要存储各种数据类型（比如字符型、宽字符型、整型、浮点型、双浮点型、布尔型等）的信息，操作系统会根据变量的数据类型，来分配内存和决定在保留内存中存储什么。</p><p>相对于C语言,cpp在枚举类型和结构体类型上有所提高</p><h4 id="7种内置的基本数据类型"><a href="#7种内置的基本数据类型" class="headerlink" title="7种内置的基本数据类型"></a>7种内置的基本数据类型</h4><table><thead><tr><th align="left">类型</th><th align="left">关键字</th></tr></thead><tbody><tr><td align="left">布尔型</td><td align="left">bool</td></tr><tr><td align="left">字符型</td><td align="left">char</td></tr><tr><td align="left">整型</td><td align="left">int</td></tr><tr><td align="left">浮点型</td><td align="left">float</td></tr><tr><td align="left">双浮点型</td><td align="left">double</td></tr><tr><td align="left">无类型</td><td align="left">void</td></tr><tr><td align="left">宽字符型</td><td align="left">wchar_t (本质是short int)</td></tr></tbody></table><p>一些基本类型可以使用一个或多个类型修饰符进行修饰, 类型修饰符包括 signed,unsigned,short,long</p><p>添加修饰符后的数据类型效果是这样的:   (具体数据会根据编译器不同和不同系统有所差异)</p><table><thead><tr><th align="left">类型</th><th align="left">位</th><th align="left">范围</th></tr></thead><tbody><tr><td align="left">char</td><td align="left">1 个字节</td><td align="left">-128 到 127 或者 0 到 255</td></tr><tr><td align="left">unsigned char</td><td align="left">1 个字节</td><td align="left">0 到 255</td></tr><tr><td align="left">signed char</td><td align="left">1 个字节</td><td align="left">-128 到 127</td></tr><tr><td align="left">int</td><td align="left">4 个字节</td><td align="left">-2147483648 到 2147483647</td></tr><tr><td align="left">unsigned int</td><td align="left">4 个字节</td><td align="left">0 到 4294967295</td></tr><tr><td align="left">signed int</td><td align="left">4 个字节</td><td align="left">-2147483648 到 2147483647</td></tr><tr><td align="left">short int</td><td align="left">2 个字节</td><td align="left">-32768 到 32767</td></tr><tr><td align="left">unsigned short int</td><td align="left">2 个字节</td><td align="left">0 到 65,535</td></tr><tr><td align="left">signed short int</td><td align="left">2 个字节</td><td align="left">-32768 到 32767</td></tr><tr><td align="left">long int</td><td align="left">8 个字节</td><td align="left">-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807</td></tr><tr><td align="left">signed long int</td><td align="left">8 个字节</td><td align="left">-9,223,372,036,854,775,808 到 9,223,372,036,854,775,807</td></tr><tr><td align="left">unsigned long int</td><td align="left">8 个字节</td><td align="left">0 到 18,446,744,073,709,551,615</td></tr><tr><td align="left">float</td><td align="left">4 个字节</td><td align="left">精度型占4个字节（32位）内存空间，+/- 3.4e +/- 38 (~7 个数字)</td></tr><tr><td align="left">double</td><td align="left">8 个字节</td><td align="left">双精度型占8 个字节（64位）内存空间，+/- 1.7e +/- 308 (~15 个数字)</td></tr><tr><td align="left">long double</td><td align="left">16 个字节</td><td align="left">长双精度型 16 个字节（128位）内存空间，可提供18-19位有效数字。</td></tr><tr><td align="left">wchar_t</td><td align="left">2 或 4 个字节</td><td align="left">1 个宽字符</td></tr></tbody></table><p>具体的判断似乎可以通过下列代码来完成,但是有些数据类型我没有运行通过</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;  </span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;  </span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="keyword">sizeof</span>(<span class="keyword">bool</span>) &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 所占字节数</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (numeric_limits&lt;<span class="keyword">bool</span>&gt;::max)() &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 最大值</span></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; (numeric_limits&lt;<span class="keyword">bool</span>&gt;::min)() &lt;&lt; <span class="built_in">endl</span>; <span class="comment">// 最小值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h4 id="枚举类型"><a href="#枚举类型" class="headerlink" title="枚举类型:"></a>枚举类型:</h4><p>在cpp中,枚举类型是一种真正的类型,形式如下:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> &lt;</span>表示符&gt; &#123;&lt;枚举列表&gt;&#125;;</span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Color</span> &#123;</span>Red, Green, Yellow&#125;;</span><br></pre></td></tr></table></figure><p>其中,enum是枚举类型标识,枚举列表定义了该枚举类型的所有枚举值.<br>定义枚举类型之后,就可以定义该枚举类型的变量.枚举类型的变量只允许赋值操作:</p><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Color myColor;</span><br><span class="line">myColor = Yellow; <span class="comment">// 对枚举类型执行赋值操作</span></span><br><span class="line"><span class="built_in">cout</span>&lt;&lt;myColor&lt;&lt;<span class="built_in">endl</span>; <span class="comment">// 结果为2 对应的是序号2,说明存储的是符号数字常量2</span></span><br></pre></td></tr></table></figure><p>详细参考菜鸟教程 <a href="https://www.runoob.com/w3cnote/cpp-enum-intro.html">https://www.runoob.com/w3cnote/cpp-enum-intro.html</a></p><h4 id="结构体数据类型"><a href="#结构体数据类型" class="headerlink" title="结构体数据类型:"></a>结构体数据类型:</h4><p>大致与c语言相同,比c更加简单,结构体一旦定义,就可以用来定义变量,而不用加标识符struct,</p><p>在cpp中,结构体相当于没有私有成员的类, 不过struct中是可以定义方法的,静态和成员都可以)</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct Student&#123;</span><br><span class="line">    long number;</span><br><span class="line">    char name[10];</span><br><span class="line">    char sex[4];</span><br><span class="line">    int age;</span><br><span class="line">    static void hello()&#123;</span><br><span class="line">    cout&lt;&lt;&quot;hello world&quot;&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br><span class="line">Student student &#x3D; &#123;100001, &quot;张三&quot;, &quot;男&quot;, 26&#125;,y&#123;&#125;,z&#123;&#125;,*p; &#x2F;&#x2F; 将Student 实例化4个</span><br><span class="line">&#x2F;&#x2F; 另, 由于clang-tidy的事, 实例化空的时候也带上括号,但是不带括号也行.</span><br><span class="line">y.number &#x3D; student.number; &#x2F;&#x2F; 等号赋值</span><br><span class="line">p &#x3D; &amp;student; &#x2F;&#x2F; 地址赋值</span><br><span class="line">z.number &#x3D; p-&gt;number; &#x2F;&#x2F; 指针赋值</span><br><span class="line">Student::hello();</span><br></pre></td></tr></table></figure><h4 id="typedef-创造数据类型"><a href="#typedef-创造数据类型" class="headerlink" title="typedef 创造数据类型:"></a>typedef 创造数据类型:</h4><p>定义后, bs就是int的另一个名称</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef int bs; </span><br></pre></td></tr></table></figure><p>如此就可以创建一个整型变量</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bs L;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> cpp </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>cv2 中文路径打开失败</title>
+      <link href="/new/2021/02/25/cv2%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%89%93%E5%BC%80%E5%A4%B1%E8%B4%A5/"/>
+      <url>/new/2021/02/25/cv2%E4%B8%AD%E6%96%87%E8%B7%AF%E5%BE%84%E6%89%93%E5%BC%80%E5%A4%B1%E8%B4%A5/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>工具函数解决问题:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">def cv_read(file_path):</span><br><span class="line">    cv_img &#x3D; cv2.imdecode(np.fromfile(file_path, dtype&#x3D;np.uint8), -1)</span><br><span class="line">    return cv_img</span><br></pre></td></tr></table></figure><p><a href="https://www.zhihu.com/question/67157462">https://www.zhihu.com/question/67157462</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> opencv cv2 python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>pyqt5 QLabel</title>
+      <link href="/new/2021/02/14/pyqt5-QLabel/"/>
+      <url>/new/2021/02/14/pyqt5-QLabel/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="常用信号"><a href="#常用信号" class="headerlink" title="常用信号"></a>常用信号</h3><table><thead><tr><th>信号</th><th>描述</th></tr></thead><tbody><tr><td>linkActivated</td><td>当单击标签中嵌入的超链接,希望在新窗口中打开这个超链接时,setOpenExternalLinks特性必须设置为true</td></tr><tr><td>linkHovered</td><td>当指针划过时候触发</td></tr></tbody></table><h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h3><table><thead><tr><th>方法</th><th>描述</th></tr></thead><tbody><tr><td>setAlignment()</td><td>设置文本对齐方式,可设置的有<br /> - Qt.AlignLeft Qt.AlignRight Qt.AlignCenter水平方向左右中对齐<br /> -  Qt.AlignJustify 水平方向调整间距两端对齐</td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr><tr><td></td><td></td></tr></tbody></table>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> pyqt5 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>使用pyuic5工具将调用ui文件转换为python类</title>
       <link href="/new/2021/02/13/%E4%BD%BF%E7%94%A8pyuic5%E5%B7%A5%E5%85%B7%E5%B0%86%E8%B0%83%E7%94%A8ui%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BApython%E7%B1%BB/"/>
       <url>/new/2021/02/13/%E4%BD%BF%E7%94%A8pyuic5%E5%B7%A5%E5%85%B7%E5%B0%86%E8%B0%83%E7%94%A8ui%E6%96%87%E4%BB%B6%E8%BD%AC%E6%8D%A2%E4%B8%BApython%E7%B1%BB/</url>
@@ -14,11 +92,32 @@
       
         <tags>
             
-            <tag> qt </tag>
+            <tag> python </tag>
             
             <tag> pyqt5 </tag>
             
-            <tag> python </tag>
+            <tag> qt </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>CSS快速查询笔记</title>
+      <link href="/new/2021/02/13/web/CSS%E5%BF%AB%E9%80%9F%E6%9F%A5%E8%AF%A2/"/>
+      <url>/new/2021/02/13/web/CSS%E5%BF%AB%E9%80%9F%E6%9F%A5%E8%AF%A2/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="css属性"><a href="#css属性" class="headerlink" title="css属性"></a>css属性</h3><h4 id="权重分配"><a href="#权重分配" class="headerlink" title="权重分配"></a>权重分配</h4><p>css权重 内联&gt;id&gt;class&gt;标签和通配符</p><h4 id="附加注意"><a href="#附加注意" class="headerlink" title="附加注意"></a>附加注意</h4><p>em 相对单位,相对于最近的父元素的字号大小变化而变化, 但是 本身,子类字号就是跟着父类走的</p><h4 id="文本css"><a href="#文本css" class="headerlink" title="文本css"></a>文本css</h4><p>字体颜色 color:red;<br>字体大小 font-size:16px; 字体的默认大小是16px<br>字体的水平对齐方式: text-align:left/center/right<br>字体 font-family 可以设置多种字体,从第一个开始适配<br>字体粗细 font-weight bold/normal(默认normal)之类的,或者用100-900表示,500等价于normal<br>文字倾斜 font-style normal不倾斜 italic倾斜<br>水平对齐方式 text-aligin left/right/center/justify(两端对齐)</p><h4 id="背景css"><a href="#背景css" class="headerlink" title="背景css"></a>背景css</h4><p>background-color: 颜色<br>background-image: 背景图<br>background-repeat: 重复 可x方向重复,y方向重复,还有no-repeat</p><p>background-size: cover表示完全覆盖  图片大小<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size">https://developer.mozilla.org/zh-CN/docs/Web/CSS/background-size</a><br>background-attachment: fixed 背景固定,就是不随滑动条滑动</p><h4 id="列表CSS"><a href="#列表CSS" class="headerlink" title="列表CSS"></a>列表CSS</h4><p>list-style:none;  去掉小黑点或者数字</p><h4 id="其他css"><a href="#其他css" class="headerlink" title="其他css"></a>其他css</h4><p>宽度 width<br>高度 height</p><h4 id="浮动css属性"><a href="#浮动css属性" class="headerlink" title="浮动css属性"></a>浮动css属性</h4><p>1,浮动的框可以向左或向右移动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。2,由于浮动框不在文档的普通流中，所以文档的普通流中的块框表现得就像浮动框不存在一样。</p><p>用途: </p><p>1, 图文排版</p><p>2.竖着的元素横着排列: 比如全体float:left 然后加一个父类,给父类设置高度使得下一个元素不会串上来</p><h3 id="W3C盒模型"><a href="#W3C盒模型" class="headerlink" title="W3C盒模型"></a>W3C盒模型</h3><p>内容-padding-border-margin</p><p>@Always |  </p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> web </tag>
+            
+            <tag> css </tag>
             
         </tags>
       
@@ -37,11 +136,11 @@
       
         <tags>
             
-            <tag> qt </tag>
+            <tag> python </tag>
             
             <tag> pyqt5 </tag>
             
-            <tag> python </tag>
+            <tag> qt </tag>
             
         </tags>
       
@@ -98,11 +197,11 @@
       
         <tags>
             
-            <tag> 小工具 </tag>
-            
             <tag> windows </tag>
             
             <tag> python </tag>
+            
+            <tag> 小工具 </tag>
             
         </tags>
       
@@ -121,11 +220,11 @@
       
         <tags>
             
-            <tag> 小工具 </tag>
-            
             <tag> windows </tag>
             
             <tag> python </tag>
+            
+            <tag> 小工具 </tag>
             
         </tags>
       
@@ -174,6 +273,46 @@
     
     
     <entry>
+      <title>Python 国内镜像</title>
+      <link href="/new/2021/02/04/Python%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F/"/>
+      <url>/new/2021/02/04/Python%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="一次性使用"><a href="#一次性使用" class="headerlink" title="一次性使用"></a>一次性使用</h3><ul><li>pip install -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a>  numpy表示安装numpy库</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple </span><br></pre></td></tr></table></figure><ul><li><p>其他的镜像源:<br>阿里云 <a href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/</a><br>中国科技大学 <a href="https://pypi.mirrors.ustc.edu.cn/simple/">https://pypi.mirrors.ustc.edu.cn/simple/</a><br>豆瓣(douban) <a href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a><br>清华大学 <a href="https://pypi.tuna.tsinghua.edu.cn/simple/">https://pypi.tuna.tsinghua.edu.cn/simple/</a><br>中国科学技术大学 <a href="http://pypi.mirrors.ustc.edu.cn/simple/">http://pypi.mirrors.ustc.edu.cn/simple/</a></p></li><li><p>库名查询:</p><p>[PyPi](<a href="https://pypi.org/">PyPI · The Python Package Index</a>)</p></li></ul><h3 id="长期使用"><a href="#长期使用" class="headerlink" title="长期使用"></a>长期使用</h3><p>Windows新建C:\Users\xx\pip\pip.ini文件,</p><p>Linux新建 ~/.pip/pip.conf</p><p>然后填入以下内容</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span> = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="attr">trusted-host</span> = pypi.tuna.tsinghua.edu.cn</span><br><span class="line"><span class="attr">disable-pip-version-check</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">timeout</span> = <span class="number">120</span></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> windows </tag>
+            
+            <tag> python </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>拍一拍文案</title>
+      <link href="/new/2021/02/04/%E6%8B%8D%E4%B8%80%E6%8B%8D/"/>
+      <url>/new/2021/02/04/%E6%8B%8D%E4%B8%80%E6%8B%8D/</url>
+      
+        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="抄来的微信拍一拍后缀文案"><a href="#抄来的微信拍一拍后缀文案" class="headerlink" title="抄来的微信拍一拍后缀文案"></a>抄来的微信拍一拍后缀文案</h1><p><img src="v2-96944c20753a77154316ce02f3454bc1_b.jpg" alt="100句超火搞笑、微信拍一拍后缀文案！"></p><ol><li><p>拍了拍我的 砖头表示自己很怂</p></li><li><p> 拍了拍我的 衣服掉了一地灰</p></li><li><p> 拍了拍我的 枕头说过去点一起</p></li><li><p> 拍了拍我的 球弹弹弹走鱼尾纹</p></li><li><p> 拍了拍我的 窗户露出一张鬼脸</p></li><li><p> 拍了拍我的 狗子转头就是一口</p></li><li><p>拍了拍我的屁股，然后走人</p></li><li><p>拍了拍我的素颜表示磕碜至极</p></li><li><p>拍了拍我的钱包说养我一辈子</p></li><li><p>拍了拍我的儿子说大哥您好！</p></li><li><p>拍了拍我的米饭说再来十碗</p></li><li><p>拍了拍我的前任坟头并烧了香</p></li><li><p>拍了拍我的垃圾桶说我爱我家</p></li><li><p>拍了拍我的 小脑瓜然后变成猪</p></li><li><p>拍了拍我的 脑门，明明没烧啊</p></li><li><p>拍了拍我的 良心，啊，并没有</p></li><li><p>拍了拍我的 狗头并且踹了一脚</p></li><li><p>拍了拍我的 呆毛表示手感极佳</p></li><li><p>拍了拍我的 头顶却没摸到秀发</p></li><li><p>拍了拍我的 肩膀并喊了声爹</p></li><li><p>拍了拍我的 脑袋怀疑注水过度</p></li><li><p>拍了拍我的 脑瓜表示并不灵光</p></li><li><p>拍了拍我的 膝盖并跳起来打我</p></li><li><p>拍了拍我的 脚并被无情地踹飞</p></li><li><p>拍了拍我的 背，您这泥儿真多</p></li><li><p>拍了拍我的 对象，发现在做梦</p></li><li><p>拍了拍我的 钱包说养我一辈子</p></li><li><p>拍了拍我的方便面并碎了一地</p></li><li><p>拍了拍我的黄瓜并撒了把盐</p></li><li><p>拍了拍我的头像并喊了声爹</p></li><li><p>拍了拍我的狗还和狗抢吃的</p></li><li><p>拍了拍我的肩膀说爸辛苦了</p></li><li><p>拍了拍我的 床说睡吧要梦到我</p></li><li><p>拍了拍我的 床说猪啊还在睡</p></li><li><p>拍了拍我的 飞船表示也想上天</p></li><li><p>拍了拍我的 大奔（一切奢侈品）感到十分嫉妒</p></li><li><p>拍了拍我的 后座说送我回家</p></li><li><p>拍了拍我的钱包说真穷</p></li><li><p>拍了拍我的床让我少睡点</p></li><li><p>拍了拍我的西瓜，想挖一勺</p></li><li><p>拍了拍我的奶茶，想喝一口</p></li><li><p>拍了拍我的八块腹肌直流口水</p></li><li><p>拍了拍我的胸说“咋这大个”</p></li><li><p>拍了拍我的我的领导说，开了我</p></li><li><p>拍了拍我的自己的马屁</p></li><li><p>拍了拍我的小嘴说女人你在玩火</p></li><li><p>拍了拍我的脑袋说要快快长大</p></li><li><p>拍了拍我的脑袋说没事小家伙</p></li><li><p>拍了拍我的肚子决定请她吃饭</p></li><li><p>拍了拍我的头却听到噗通噗通</p></li><li><p>拍了拍我的小脑袋觉得很可爱</p></li><li><p>拍了拍我的肚子问：几个月了</p></li><li><p>拍了拍我的小脸并啵儿了一口</p></li><li><p>拍了拍我的头被一脚踹飞</p></li><li><p>拍了拍我的小屁股被揍了</p></li><li><p>拍了拍我的膝盖还要搭梯子</p></li><li><p>拍了拍我的脸蛋说美女在吗</p></li><li><p>拍了拍我的头说你是仙女吗</p></li><li><p>拍了拍我的胸发现她并没有</p></li><li><p>拍了拍我的的素颜照被吓哭</p></li><li><p>拍了拍我的前任遗照上的灰尘</p></li><li><p>拍了拍我的的世界第一帅证书</p></li><li><p>拍了拍我的的世界第一美证书</p></li><li><p>拍了拍我的马桶，留下了口水</p></li><li><p>拍了拍我的车,说打工不可能的</p></li><li><p>拍了拍我的小鹿说怎么还不撞</p></li><li><p>拍了拍我的钱包决定给她转账</p></li><li><p>拍了拍我的傻逼队友的脑瓜子</p></li><li><p>拍了拍我的桃树说要快点开花</p></li><li><p>拍了拍我的窗户露出一张鬼脸</p></li><li><p>拍了拍我的砖头表示自己很怂</p></li><li><p>拍了拍我的桌子，姐就是不服</p></li><li><p>拍了拍我的喇叭，前面的让开</p></li><li><p>拍了拍我的城堡大门却被赶走</p></li><li><p>拍了拍我的网易云，说生而为人</p></li><li><p>拍了拍我的兰博基尼让我载她</p></li><li><p>拍了拍我的胸说好大</p></li><li><p>拍了拍我的肩膀说爸你辛苦了</p></li><li><p>拍了拍我的头 并叫了声爸爸</p></li><li><p>拍了拍我的尊贵的脚指头</p></li><li><p>拍了拍我的男朋友（易烊千玺，王源，王俊凯，杨洋，李易峰等等）</p></li><li><p>拍了拍我的女朋友（赵丽颖，迪丽热巴，古力娜扎等等）</p></li><li><p>拍了拍我的宇宙飞船要我让座</p></li><li><p>拍了拍我的脑袋瓜说 真聪明</p></li><li><p>拍了拍我的充满智慧的大脑</p></li><li><p>拍了拍我的膝盖说 拍不到头</p></li><li><p>拍了拍我的鞋说 假的</p></li><li><p>拍了拍我的小脑瓜 然后变成猪</p></li><li><p>拍了拍我的 良心 啊 没有</p></li><li><p>拍了拍我的 圆润肚子 还可以吃</p></li><li><p>拍了拍我的肩膀，说你真的不胖</p></li><li><p>拍了拍我的手说：就这？</p></li><li><p>拍了拍我的 后背叫了声大哥</p></li><li><p>拍了拍我的 问你不会百度吗</p></li><li><p>拍了拍我的 头发说什么洗发水</p></li><li><p>拍了拍我的 瘪钱包哭出了声</p></li><li><p>拍了拍我的 饭碗给了一只鸡腿</p></li><li><p>拍了拍我的 仙人掌哈哈大笑</p></li><li><p>拍了拍我的 宠物叫了声祖宗</p></li><li><p>拍了拍我的 皮肤说吹弹可破</p></li></ol>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 生活 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Windows10路径过长 解决办法</title>
       <link href="/new/2021/02/04/%E8%B7%AF%E5%BE%84%E8%BF%87%E9%95%BF/"/>
       <url>/new/2021/02/04/%E8%B7%AF%E5%BE%84%E8%BF%87%E9%95%BF/</url>
@@ -193,54 +332,6 @@
     
     
     <entry>
-      <title>拍一拍文案</title>
-      <link href="/new/2021/02/04/%E6%8B%8D%E4%B8%80%E6%8B%8D/"/>
-      <url>/new/2021/02/04/%E6%8B%8D%E4%B8%80%E6%8B%8D/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="抄来的微信拍一拍后缀文案"><a href="#抄来的微信拍一拍后缀文案" class="headerlink" title="抄来的微信拍一拍后缀文案"></a>抄来的微信拍一拍后缀文案</h1><p><img src="v2-96944c20753a77154316ce02f3454bc1_b.jpg" alt="100句超火搞笑、微信拍一拍后缀文案！"></p><ol><li><p>拍了拍我的 砖头表示自己很怂</p></li><li><p> 拍了拍我的 衣服掉了一地灰</p></li><li><p> 拍了拍我的 枕头说过去点一起</p></li><li><p> 拍了拍我的 球弹弹弹走鱼尾纹</p></li><li><p> 拍了拍我的 窗户露出一张鬼脸</p></li><li><p> 拍了拍我的 狗子转头就是一口</p></li><li><p>拍了拍我的屁股，然后走人</p></li><li><p>拍了拍我的素颜表示磕碜至极</p></li><li><p>拍了拍我的钱包说养我一辈子</p></li><li><p>拍了拍我的儿子说大哥您好！</p></li><li><p>拍了拍我的米饭说再来十碗</p></li><li><p>拍了拍我的前任坟头并烧了香</p></li><li><p>拍了拍我的垃圾桶说我爱我家</p></li><li><p>拍了拍我的 小脑瓜然后变成猪</p></li><li><p>拍了拍我的 脑门，明明没烧啊</p></li><li><p>拍了拍我的 良心，啊，并没有</p></li><li><p>拍了拍我的 狗头并且踹了一脚</p></li><li><p>拍了拍我的 呆毛表示手感极佳</p></li><li><p>拍了拍我的 头顶却没摸到秀发</p></li><li><p>拍了拍我的 肩膀并喊了声爹</p></li><li><p>拍了拍我的 脑袋怀疑注水过度</p></li><li><p>拍了拍我的 脑瓜表示并不灵光</p></li><li><p>拍了拍我的 膝盖并跳起来打我</p></li><li><p>拍了拍我的 脚并被无情地踹飞</p></li><li><p>拍了拍我的 背，您这泥儿真多</p></li><li><p>拍了拍我的 对象，发现在做梦</p></li><li><p>拍了拍我的 钱包说养我一辈子</p></li><li><p>拍了拍我的方便面并碎了一地</p></li><li><p>拍了拍我的黄瓜并撒了把盐</p></li><li><p>拍了拍我的头像并喊了声爹</p></li><li><p>拍了拍我的狗还和狗抢吃的</p></li><li><p>拍了拍我的肩膀说爸辛苦了</p></li><li><p>拍了拍我的 床说睡吧要梦到我</p></li><li><p>拍了拍我的 床说猪啊还在睡</p></li><li><p>拍了拍我的 飞船表示也想上天</p></li><li><p>拍了拍我的 大奔（一切奢侈品）感到十分嫉妒</p></li><li><p>拍了拍我的 后座说送我回家</p></li><li><p>拍了拍我的钱包说真穷</p></li><li><p>拍了拍我的床让我少睡点</p></li><li><p>拍了拍我的西瓜，想挖一勺</p></li><li><p>拍了拍我的奶茶，想喝一口</p></li><li><p>拍了拍我的八块腹肌直流口水</p></li><li><p>拍了拍我的胸说“咋这大个”</p></li><li><p>拍了拍我的我的领导说，开了我</p></li><li><p>拍了拍我的自己的马屁</p></li><li><p>拍了拍我的小嘴说女人你在玩火</p></li><li><p>拍了拍我的脑袋说要快快长大</p></li><li><p>拍了拍我的脑袋说没事小家伙</p></li><li><p>拍了拍我的肚子决定请她吃饭</p></li><li><p>拍了拍我的头却听到噗通噗通</p></li><li><p>拍了拍我的小脑袋觉得很可爱</p></li><li><p>拍了拍我的肚子问：几个月了</p></li><li><p>拍了拍我的小脸并啵儿了一口</p></li><li><p>拍了拍我的头被一脚踹飞</p></li><li><p>拍了拍我的小屁股被揍了</p></li><li><p>拍了拍我的膝盖还要搭梯子</p></li><li><p>拍了拍我的脸蛋说美女在吗</p></li><li><p>拍了拍我的头说你是仙女吗</p></li><li><p>拍了拍我的胸发现她并没有</p></li><li><p>拍了拍我的的素颜照被吓哭</p></li><li><p>拍了拍我的前任遗照上的灰尘</p></li><li><p>拍了拍我的的世界第一帅证书</p></li><li><p>拍了拍我的的世界第一美证书</p></li><li><p>拍了拍我的马桶，留下了口水</p></li><li><p>拍了拍我的车,说打工不可能的</p></li><li><p>拍了拍我的小鹿说怎么还不撞</p></li><li><p>拍了拍我的钱包决定给她转账</p></li><li><p>拍了拍我的傻逼队友的脑瓜子</p></li><li><p>拍了拍我的桃树说要快点开花</p></li><li><p>拍了拍我的窗户露出一张鬼脸</p></li><li><p>拍了拍我的砖头表示自己很怂</p></li><li><p>拍了拍我的桌子，姐就是不服</p></li><li><p>拍了拍我的喇叭，前面的让开</p></li><li><p>拍了拍我的城堡大门却被赶走</p></li><li><p>拍了拍我的网易云，说生而为人</p></li><li><p>拍了拍我的兰博基尼让我载她</p></li><li><p>拍了拍我的胸说好大</p></li><li><p>拍了拍我的肩膀说爸你辛苦了</p></li><li><p>拍了拍我的头 并叫了声爸爸</p></li><li><p>拍了拍我的尊贵的脚指头</p></li><li><p>拍了拍我的男朋友（易烊千玺，王源，王俊凯，杨洋，李易峰等等）</p></li><li><p>拍了拍我的女朋友（赵丽颖，迪丽热巴，古力娜扎等等）</p></li><li><p>拍了拍我的宇宙飞船要我让座</p></li><li><p>拍了拍我的脑袋瓜说 真聪明</p></li><li><p>拍了拍我的充满智慧的大脑</p></li><li><p>拍了拍我的膝盖说 拍不到头</p></li><li><p>拍了拍我的鞋说 假的</p></li><li><p>拍了拍我的小脑瓜 然后变成猪</p></li><li><p>拍了拍我的 良心 啊 没有</p></li><li><p>拍了拍我的 圆润肚子 还可以吃</p></li><li><p>拍了拍我的肩膀，说你真的不胖</p></li><li><p>拍了拍我的手说：就这？</p></li><li><p>拍了拍我的 后背叫了声大哥</p></li><li><p>拍了拍我的 问你不会百度吗</p></li><li><p>拍了拍我的 头发说什么洗发水</p></li><li><p>拍了拍我的 瘪钱包哭出了声</p></li><li><p>拍了拍我的 饭碗给了一只鸡腿</p></li><li><p>拍了拍我的 仙人掌哈哈大笑</p></li><li><p>拍了拍我的 宠物叫了声祖宗</p></li><li><p>拍了拍我的 皮肤说吹弹可破</p></li></ol>]]></content>
-      
-      
-      
-        <tags>
-            
-            <tag> 其他 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Python 国内镜像</title>
-      <link href="/new/2021/02/04/Python%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F/"/>
-      <url>/new/2021/02/04/Python%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F/</url>
-      
-        <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="一次性使用"><a href="#一次性使用" class="headerlink" title="一次性使用"></a>一次性使用</h3><ul><li>pip install -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple">https://pypi.tuna.tsinghua.edu.cn/simple</a>  numpy表示安装numpy库</li></ul><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -i https://pypi.tuna.tsinghua.edu.cn/simple </span><br></pre></td></tr></table></figure><ul><li><p>其他的镜像源:<br>阿里云 <a href="http://mirrors.aliyun.com/pypi/simple/">http://mirrors.aliyun.com/pypi/simple/</a><br>中国科技大学 <a href="https://pypi.mirrors.ustc.edu.cn/simple/">https://pypi.mirrors.ustc.edu.cn/simple/</a><br>豆瓣(douban) <a href="http://pypi.douban.com/simple/">http://pypi.douban.com/simple/</a><br>清华大学 <a href="https://pypi.tuna.tsinghua.edu.cn/simple/">https://pypi.tuna.tsinghua.edu.cn/simple/</a><br>中国科学技术大学 <a href="http://pypi.mirrors.ustc.edu.cn/simple/">http://pypi.mirrors.ustc.edu.cn/simple/</a></p></li><li><p>库名查询:</p><p>[PyPi](<a href="https://pypi.org/">PyPI · The Python Package Index</a>)</p></li></ul><h3 id="长期使用"><a href="#长期使用" class="headerlink" title="长期使用"></a>长期使用</h3><p>Windows新建C:\Users\xx\pip\pip.ini文件,</p><p>Linux新建 ~/.pip/pip.conf</p><p>然后填入以下内容</p><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[global]</span></span><br><span class="line"><span class="attr">index-url</span> = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line"><span class="attr">trusted-host</span> = pypi.tuna.tsinghua.edu.cn</span><br><span class="line"><span class="attr">disable-pip-version-check</span> = <span class="literal">true</span></span><br><span class="line"><span class="attr">timeout</span> = <span class="number">120</span></span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> python </category>
-          
-          <category> 镜像 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> windows </tag>
-            
-            <tag> python </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Hello World!</title>
       <link href="/new/2021/02/03/hello-world/"/>
       <url>/new/2021/02/03/hello-world/</url>
@@ -251,7 +342,7 @@
       
         <tags>
             
-            <tag> 其他 </tag>
+            <tag> Hello world </tag>
             
         </tags>
       
