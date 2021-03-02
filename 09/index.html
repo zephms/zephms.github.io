@@ -1,0 +1,83 @@
+<html>
+<head>
+<style type="text/css">
+body
+{
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+#canvas
+{
+position: absolute;
+left: 10px;
+}
+#buttons
+{
+position: absolute;
+left: 610px;
+}
+.head{
+        /* background-color: rgb(0, 132, 255); */
+        background-color: white;
+        text-align: center;
+        font-size: 30px;
+        color: rgb(51,51,51);
+        /* color: rgb(0, 132, 255);; */
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 50px;
+        width: 100vw;
+
+        border-bottom-style: solid;
+        /* border-bottom: 3px; */
+        
+}
+#canvas {
+  background-image: url(2010072514512816.gif); 
+  /* height: 600px; 
+  width: 600px; */
+  margin: 100px auto;
+}
+.bsbtn{
+  left: 700px;
+  width: 110px;
+  height: 45px;
+  /* background-color: red; */
+  position: absolute;
+  margin: 40vh auto;
+  border: solid rgb(51,51,51) 3px;
+  text-align: center;
+  font-family: 'Microsoft YaHei';
+  line-height: 43px;
+}
+</style>
+  <script src="jquery-1.4.2.min.js" type="text/javascript"></script>
+  <script src="CommonDataStructure.js" type="text/javascript"></script>
+  <script src="StoneManager.js" type="text/javascript"></script>
+  <script src="StoneAI.js" type="text/javascript"></script>
+  <script src="StoneRule.js" type="text/javascript"></script>
+  <script src="Chessboard.js" type="text/javascript"></script>
+  <script src="UIHelper.js" type="text/javascript"></script>
+  <link rel="icon" type="image/png" sizes="144x144" href="../img/aico.png"/>
+  <title>静态网页实现五子棋|ACBS</title>
+  <script type="text/javascript">
+  $(document).ready(function() {
+  var helper = new UIHelper($("#canvas"));
+  $("#btnStart").bind("click", helper, helper.btnStartClick);
+  $("#canvas").bind("click", helper, helper.CanvasClick);
+  $("#btnTest").click(function() { alert(helper.info); });
+  });
+</script>
+</head>
+<body>
+  <div class="head">静态网页实现五子棋~</div>
+  <div id="canvas"></div>
+  <div class="bsbtn" id="btnStart">  开始游戏 </div>
+<div id="buttons">
+<!-- <input type="button" value="帮助" id="btnTest">
+<input type="button" value="开始游戏" id="btnStart"> -->
+</div>
+</body>
+</html>
