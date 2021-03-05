@@ -1,0 +1,125 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+  font-family: "Helvetica Neue",Helvetica,Arial,Sans-serif;
+  font-weight: 300;
+  text-align: center;
+  cursor: default;
+
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  -ms-touch-action: none;
+}
+
+div {
+  cursor: inherit;
+}
+
+a {
+  color: steelBlue;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#center {
+  position: relative;
+  height: 100%;
+  width: 512px;
+  margin: 0 auto;
+}
+
+#cont {
+  position: absolute;
+  top: 50%;
+  margin-top: -270px;
+  width:  512px;
+  height: 570px;
+}
+
+#dot {
+  width:  512px;
+  height: 512px;
+}
+
+svg,
+circle {
+  pointer-events: none;
+}
+
+#next {
+  padding-top: 30px;
+}
+
+#next input {
+  width: 480px;
+  border: 1px solid #ccc;
+  outline: none;
+}
+
+#next .err {
+  color: red;
+}
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 18px;
+  padding-bottom: 2px;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 1)), to(rgba(255, 255, 255, 0)));
+  background: -moz-linear-gradient(bottom, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+}
+
+div.not-found {
+  text-align: center;
+  margin-top: 200px;
+  font-size: 32px;
+}
+
+.head{
+  /* background-color: rgb(0, 132, 255); */
+  background-color: white;
+  text-align: center;
+  font-size: 30px;
+  color: rgb(51,51,51);
+  /* color: rgb(0, 132, 255);; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 50px;
+  width: 100vw;
+
+  border-bottom-style: solid;
+  /* border-bottom: 3px; */
+  
+}
+
+@media screen and (min-width: 1024px) {
+  .head{
+    /* background-color: rgb(0, 132, 255); */
+    background-color: white;
+    text-align: center;
+    font-size: 35px;
+    color: rgb(51,51,51);
+    /* color: rgb(0, 132, 255);; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100vw;
+    font-family: "微软雅黑";
+    border-bottom-style: solid;
+    /* border-bottom: 3px; */ 
+  }
+}
