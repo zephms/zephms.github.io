@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C++ 引用类型 | ACBS</title><meta name="keywords" content="cpp"><meta name="author" content="boshen"><meta name="copyright" content="boshen"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="$\alpha$hhh &#x2F;&#x2F; 引用类型&#x2F;&#x2F; 引用类型是cpp中新增加的类型,用标识符&amp;来表示,&#x2F;&#x2F; 本质是对已经有的变量起的一个别名&#x2F;&#x2F; 一般形式: 数据类型 &amp; 引用变量名 &#x3D; 已定义过的变量名float x &#x3D; 5;float &amp; y1 &#x3D; x; &#x2F;&#x2F;针对一个变量,重新定义一个别名cout&lt;&lt;y1&lt;&lt;endl;&#x2F;&#x2F; 引用类型可以用在函数传参上,使">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++ 引用类型">
+<meta property="og:url" content="http://www.acbs.top/new/2021/03/02/CPP/cpp%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/index.html">
+<meta property="og:site_name" content="ACBS">
+<meta property="og:description" content="$\alpha$hhh &#x2F;&#x2F; 引用类型&#x2F;&#x2F; 引用类型是cpp中新增加的类型,用标识符&amp;来表示,&#x2F;&#x2F; 本质是对已经有的变量起的一个别名&#x2F;&#x2F; 一般形式: 数据类型 &amp; 引用变量名 &#x3D; 已定义过的变量名float x &#x3D; 5;float &amp; y1 &#x3D; x; &#x2F;&#x2F;针对一个变量,重新定义一个别名cout&lt;&lt;y1&lt;&lt;endl;&#x2F;&#x2F; 引用类型可以用在函数传参上,使">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.acbs.top/new/img/orange.jpg">
+<meta property="article:published_time" content="2021-03-02T00:16:17.000Z">
+<meta property="article:modified_time" content="2021-03-02T00:17:39.290Z">
+<meta property="article:author" content="boshen">
+<meta property="article:tag" content="cpp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.acbs.top/new/img/orange.jpg"><link rel="shortcut icon" href="/new/img/favicon.png"><link rel="canonical" href="http://www.acbs.top/new/2021/03/02/CPP/cpp%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/new/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/new/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2021-03-02 08:17:39'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="//at.alicdn.com/t/font_2373087_elarzsy8l6s.css"><meta name="generator" content="Hexo 5.3.0"></head><body><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/new/img/touxiang.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/new/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/new/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/new/archives/"><i class="fa-fw fa fa-clock"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/new/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/new/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/new/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/new/photo/"><i class="fa-fw fas fa-images"></i><span> 图片</span></a></div><div class="menus_item"><a class="site-page" href="/new/start/"><i class="fa-fw fa fa-location-arrow"></i><span> 起始页</span></a></div><div class="menus_item"><a class="site-page" href="/new/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/new/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog_name"><a id="site-name" href="/new/">ACBS</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/new/archives/"><i class="fa-fw fa fa-clock"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/new/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/new/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/new/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/new/photo/"><i class="fa-fw fas fa-images"></i><span> 图片</span></a></div><div class="menus_item"><a class="site-page" href="/new/start/"><i class="fa-fw fa fa-location-arrow"></i><span> 起始页</span></a></div><div class="menus_item"><a class="site-page" href="/new/link/"><i class="fa-fw fas fa-link"></i><span> 友情链接</span></a></div><div class="menus_item"><a class="site-page" href="/new/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">C++ 引用类型</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-02T00:16:17.000Z" title="发表于 2021-03-02 08:16:17">2021-03-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-03-02T00:17:39.290Z" title="更新于 2021-03-02 08:17:39">2021-03-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div><article class="post-content" id="article-container"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>$\alpha$<br>hhh</p>
+<p>// 引用类型<br>// 引用类型是cpp中新增加的类型,用标识符&amp;来表示,<br>// 本质是对已经有的变量起的一个别名<br>// 一般形式: 数据类型 &amp; 引用变量名 = 已定义过的变量名<br>float x = 5;<br>float &amp; y1 = x; //针对一个变量,重新定义一个别名<br>cout&lt;&lt;y1&lt;&lt;endl;<br>// 引用类型可以用在函数传参上,使用引用进行接受参数<br>// 例如:<br>int max_a=3, max_b=8, max_res;<br>bs_max(max_a, max_b, max_res); // 传入的是int类型,使用引用类型进行接收.这样,函数内部的更改就是对int类型的更改<br>cout&lt;&lt;max_res&lt;&lt;endl;</p>
+<p>// const类型<br>cout&lt;&lt;”============”&lt;&lt;endl;<br>// 关键字const可以用来限制 变量,函数参数,函数返回值 的修改<br>// const修饰一个变量的时候,则限定该变量在定义域范围内为常量,并要求该变量在初始化的时候进行赋值,以后不允许重新赋值或者修改<br>// c语言时,使用的是宏定义命令常量,即 #define, cpp后就用const定义常量<br>//      相对于宏定义,const可以用来进行类型检查,且可以像局部变量一样在程序的任意位置进行定义<br>const int Maxlen = 50;<br>// todo 此处应该补上关于 限制函数参数,函数返回值 的方法</p>
+<p>// 函数<br>// 相对与c,cpp的函数有很多优点, 主要体现在 1,要求函数原型, 2,允许内联函数, 3,带缺省值的函数, 4,函数重载 ,…<br>int show1(); // 只要定义了函数原型,系统编译即可通过, 然后再程序后面补上函数体就可以,如果不补的话依旧运行不了,会报错undefined reference<br>show1();<br>// 内联函数:<br>// 在函数声明的时候加上inline字样,此时编译器会将 程序中出现的对该函数的调用 用该函数的函数体 来代替,用于提高运行效率<br>// 另外,内联函数中不允许使用 循环和开关 ,否则系统将其视为普通函数<br>// 内联函数的使用会增加代码量,但是会提高性能,也有说,用空间换取时间<br>// 网上还提到一点:类结构中所在的类说明内部定义的函数是内联函数。 具体等看看类再说啵<br>// todo 对应上一行<br>// 带缺省参数的函数:<br>// 函数的参数可以带有默认值,但是默认值的设置要遵守从右到左的顺序, 即 若某个参数有默认值,则后面必须都有默认值<br>defaultPara(5, 6); // 使用的时候从左到右填入,不可以跳着填,最后的可以省略<br>// 缺省参数的优点– 1方便函数调用语句的书写, 2,方便软件系统的扩张和改进,函数增加功能后,可以通过缺省参数的形式保证原有程序的正确运行<br>//          3, 方便类的构造函数设计</p>
+<p>// 函数的重载:<br>// 建立多个函数名相同,但是参数列表不相同的函数.<br>// 函数返回类型可以相同,也可以不同,但是形参必须不同,这种不同可以是参数个数不同也可以是参数类型不同<br>// 函数的重载又称为函数的多态性.通过改变形参个数或类型使多个函数共用一个函数名</p>
+<p>// 名字空间:<br>// 名字空间可以看作一个比程序模块更大的包,在名字空间中可以封装代码<br>// 使用方式– 1, 使用作用域运算符”::”, 2,使用using namespace xxx语句,将所有名字在该空间内可见<br>first_space::func();<br>second_space::func();</p>
+<p>// cpp内存动态分配:<br>// cpp新增 new和delete运算符,用于动态存储空间的分配和释放<br>// 所谓动态存储空间,是指系统提供的一个叫做堆的内存区域,需要用的时候,使用new申请,不使用的时候使用delete释放内存空间给系统<br>// new一般形式: new 类型名 (初始值) | new 类型名 [数组个数]<br>// 申请单个变量时,可以有初始值,申请数组的时候不能有初始值,只接受数组个数<br>// 当动态空间申请不成功的时候new会返回空指针NULL<br>// delete一般格式: delete 指针 (释放指针的空间) | delete[] 指针 (释放动态数组的空间)<br>char* string1, s1[]=”Data Structure”;<br>int length = 14;<br>string1 = new char[length];<br>for(int i=0;i&lt;length;i++){<br>string1[i] = s1[i];<br>}<br>cout&lt;&lt;string1&lt;&lt;endl;<br>cout&lt;&lt;s1&lt;&lt;endl;</p>
+<pre><code>return 0;
+</code></pre>
+<p>}</p>
+<p>int show1(){<br>    cout&lt;&lt;”show1 function”&lt;&lt;endl;<br>}</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">boshen</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.acbs.top/new/2021/03/02/CPP/cpp%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/">http://www.acbs.top/new/2021/03/02/CPP/cpp%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.acbs.top/new" target="_blank">ACBS</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/new/tags/cpp/">cpp</a></div><div class="post_share"><div class="social-share" data-image="/new/img/orange.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/new/2021/03/02/JAVA/java%E8%A3%85%E7%AE%B1%E6%8B%86%E7%AE%B1/"><img class="prev-cover" src="/new/img/orange.jpg" onerror="onerror=null;src='/new/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info"></div></div></a></div><div class="next-post pull-right"><a href="/new/2021/03/01/CPP/cpp%E6%A0%87%E5%87%86io/"><img class="next-cover" src="/new/img/orange.jpg" onerror="onerror=null;src='/new/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C++ 标准IO</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/new/2021/03/01/CPP/cpp数据类型/" title="C++ 数据类型"><img class="cover" src="/new/img/orange.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="title">C++ 数据类型</div></div></a></div><div><a href="/new/2021/03/01/CPP/cpp标准io/" title="C++ 标准IO"><img class="cover" src="/new/img/orange.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-01</div><div class="title">C++ 标准IO</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/new/img/touxiang.png" onerror="this.onerror=null;this.src='/new/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">boshen</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/new/archives/"><div class="headline">文章</div><div class="length-num">20</div></a></div><div class="card-info-data-item is-center"><a href="/new/tags/"><div class="headline">标签</div><div class="length-num">12</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/zephms"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/zephms" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:ab@dfgh.asia" target="_blank" title="Email"><i class="fas fa-envelope"></i></a><a class="social-icon" href="/new/info/qq" target="_blank" title="QQ"><i class="fab fa-qq"></i></a></div></div><div class="sticky_layout"></div></div></main><footer id="footer"></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/new/js/utils.js"></script><script src="/new/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
