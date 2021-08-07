@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="144x144" href="./img/aico.png"/>
+    <title>ACBS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #776bb3;
+            overflow: hidden;
+        }
+
+        .title {
+            position: absolute;
+            width: 100%;
+            height: 3rem;
+            background: #776bb3;
+            box-shadow:  14px 14px 27px #655b98,
+             -14px -14px 27px #897bce;
+        }
+
+        .stay {
+            height: 3rem;
+        }
+
+        .logo {
+            float: right;
+            font-size: 20pt;
+            padding: 5pt;
+            margin-right: 2rem;
+            color: white;
+        }
+
+        .items {
+            width: 80%;
+            margin: 40px auto;
+            display: flex;
+        }
+
+        .item {
+            display: inline-block;
+            
+            height: 80pt;
+            width:  80pt;
+            flex: 1;
+        }
+
+        .item-txt {
+            width: fit-content;
+            margin: 2pt auto;
+            color: white;
+            text-shadow: #342d5c 0.1em 0.1em 0.2em
+        }
+
+        .box {
+            width: 80pt;
+            height: 80pt;
+
+            
+            border-radius: 32px;
+            background: #776bb3;
+            box-shadow:  14px 14px 27px #655b98,
+             -14px -14px 27px #897bce;
+        }
+
+        .box img {
+            width: 40%;height: 40%;margin: auto;display: block;padding-top: 16pt;padding-bottom: 3pt;
+        }
+
+        .list {
+            width: 80%;
+            margin: 40px auto;
+        }
+
+        .list-item {
+            margin-top: 40px;
+        }
+
+        .list-txt {
+            padding: 11pt;
+            padding-left: 30pt;
+            color: white;
+            text-shadow: #342d5c 0.1em 0.1em 0.2em
+        }
+
+        .box2 {
+            width: 90px;
+            height: 90px;
+            margin: 40px;
+
+            border-radius: 32px;
+            background: #776bb3;
+            box-shadow: inset 14px 14px 27px #655b98,
+            inset -14px -14px 27px #897bce;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">
+        <div class="logo">
+            shen
+        </div>
+    </div>
+    <div class="stay">
+
+    </div>
+
+    <div class="items">
+        <div class="item">
+            <div class="box">
+                <img src="./guanwangicon31340.svg" alt="" >
+                <div class="item-txt">博客</div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="box">
+                <img src="./kaishi.svg" alt="" >
+                <div class="item-txt">起始页</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="box">
+                <img src="./git.svg" alt="" >
+                <div class="item-txt">GitHub</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="items">
+        <div class="box" style="width: 190pt; margin: 15pt auto;">
+            <img src="./shu.svg" alt="" >
+            <div class="item-txt">AiEducate 智慧课堂</div>
+        </div>
+    </div>
+
+    <div class="list">
+        <div class="list-item" onclick="javascrtpt:window.location.href='./02.html'">
+            <div class="box" style="width: 100%;height: 40pt;">
+                <div class="list-txt">在线作文</div>
+            </div>
+        </div>
+
+        <div class="list-item" onclick="javascrtpt:window.location.href='./03.html'">
+            <div class="box" style="width: 100%;height: 40pt;">
+                <div class="list-txt">博深家的墙</div>
+            </div>
+        </div>
+
+        <div class="list-item" onclick="javascrtpt:window.location.href='./04.html'">
+            <div class="box" style="width: 100%;height: 40pt;">
+                <div class="list-txt">下一顿吃什么</div>
+            </div>
+        </div>
+
+        <div class="list-item" onclick="javascrtpt:window.location.href='./05/index.html'">
+            <div class="box" style="width: 100%;height: 40pt;">
+                <div class="list-txt">这顿吃什么</div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="total">
+        <div class="article" onclick="javascrtpt:window.location.href='https://www.acbs.top/new/'">
+            <div class="article-title">
+                新版博客
+            </div>
+            <!-- <div class="article-describe">
+                开启ssr之后,命令行中不能正常访问网络,通过配置使得命令行中也可以连接到网络
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./02.html'">
+            <div class="article-title">
+                在线作文
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./03.html'">
+            <div class="article-title">
+                博深家的墙
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./04.html'">
+            <div class="article-title">
+                下一顿吃什么
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./05/index.html'">
+            <div class="article-title">
+                这顿吃什么
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./06/index.html'">
+            <div class="article-title">
+                魔改合成大西瓜
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./07/index.html'">
+            <div class="article-title">
+                养鲲
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./08/index.html'">
+            <div class="article-title">
+                时钟
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./09/index.html'">
+            <div class="article-title">
+                五子棋
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./10/index.html'">
+            <div class="article-title">
+                手机短信图片生成器 | 有内鬼 停止交易~
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+        <div class="article" onclick="javascrtpt:window.location.href='./11/index.html'">
+            <div class="article-title">
+                手动去除马赛克
+            </div>
+            <!-- <div class="article-describe">
+                博深在线实时为您生成大量文章
+            </div> -->
+        </div>
+
+    </div>
+    <div class="head">
+        shen&nbsp;&nbsp;&nbsp;
+    </div>
+</body>
+</html>
